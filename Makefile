@@ -8,7 +8,7 @@ build-image:
 	# . : current directory
 
 .PHONY: run-test
-run-test: build-test
+run-test: build-image
 	docker run -p 8099:80 --rm --name test igor/hello-world
 
 	# run : create container layer
@@ -25,6 +25,6 @@ push-image:
 	# push : push image to to hub.docker.com to ipostnikov/hello-world repo
 
 .PHONY: run-hub-test
-run-hub-test: build-image push-image
+run-hub-test: build-imagegigit  push-image
 	docker run -p 8098:80 --rm --name test-hub ipostnikov/hello-world
 
