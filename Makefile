@@ -1,8 +1,7 @@
 
 .PHONY: build-test
 build-test:
-	#docker build -t igor/hello-world .
-	docker build ipostnikov/hello-world
+	docker build -t igor/hello-world .
 
 	# -t : giving name
 	# . : current directory
