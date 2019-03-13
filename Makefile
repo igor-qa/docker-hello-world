@@ -1,6 +1,6 @@
 
-.PHONY: build-test
-build-test:
+.PHONY: build-image
+build-image:
 	docker build -t igor/hello-world .
 
 	# build : build docker image
@@ -16,11 +16,15 @@ run-test: build-test
 	# --rm : remove container after close
 	# --name: add container name
 
-.PHONY: run-hub-test
-run-hub-test: build-test
+.PHONY: push-image
+push-image:
 	docker tag igor/hello-world ipostnikov/hello-world
 	docker push ipostnikov/hello-world
-	docker run -p 8098:80 --rm --name test-hub ipostnikov/hello-world
 
 	# tag : tag image
 	# push : push image to to hub.docker.com to ipostnikov/hello-world repo
+
+.PHONY: run-hub-test
+run-hub-test: build-image push-image
+	docker run -p 8098:80 --rm --name test-hub ipostnikov/hello-world
+
